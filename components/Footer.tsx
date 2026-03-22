@@ -15,7 +15,7 @@ export function Footer() {
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                 R
               </span>
-              <span>Resizely</span>
+              <span>Resizelab</span>
             </Link>
             <p className="max-w-sm text-sm text-muted-foreground">
               Resize images for social media, websites, marketing, and print with fast client-side processing and no watermark.
@@ -61,7 +61,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-border pt-6 text-sm text-muted-foreground">
-          <p>Copyright {currentYear} Resizely. All rights reserved.</p>
+          <p>Copyright {currentYear} Resizelab. All rights reserved.</p>
         </div>
       </div>
     </footer>

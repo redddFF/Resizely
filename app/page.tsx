@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Zap, Sparkles, Shield } from 'lucide-react';
 import { formats, getPopularFormats } from '@/lib/formats';
 import { RecentlyUsedSection } from '@/components/RecentlyUsedSection';
+import { SmartResolutionSearch } from '@/components/SmartResolutionSearch';
 
 const popularFormats = getPopularFormats(8);
 
@@ -28,10 +29,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl space-y-6">
             <h1 className="text-5xl md:text-6xl font-bold text-foreground text-balance">
-              Free Image Resizer for Every Platform
+              Resizelab: Free Image Resizer for Every Platform
             </h1>
             <p className="text-xl text-muted-foreground text-balance">
-              Resize images instantly for Instagram, YouTube, LinkedIn, Facebook, TikTok, Pinterest, and 50+ other formats. No watermarks, no sign-up required.
+              Resize images instantly for Instagram, YouTube, LinkedIn, Facebook, TikTok, Pinterest, and 150+ other formats. No watermarks, no sign-up required.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href={`/resize-image/${formats[0].slug}`}>
@@ -41,6 +42,7 @@ export default function HomePage() {
                 </Button>
               </Link>
             </div>
+            <SmartResolutionSearch />
           </div>
         </div>
       </section>
