@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
+import { generateWebApplicationSchema, renderJSONLD } from '@/lib/structuredData'
 import './globals.css'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
@@ -50,6 +51,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          id="webapp-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: renderJSONLD(generateWebApplicationSchema(baseUrl)),
+          }}
+        />
+      </head>
       <body className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}>
         <div className="flex min-h-screen flex-col bg-background">
           <Navbar />

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ResizeImagePage } from '@/components/ResizeImagePage';
+import { StructuredData } from '@/components/StructuredData';
 import {
   getFormatBySlug,
   getAllFormatSlugs,
@@ -72,6 +73,7 @@ export default async function Page({
 
   return (
     <main className="min-h-screen bg-background">
+      <StructuredData format={format} baseUrl={baseUrl} />
       <div className="container mx-auto px-4 py-8 md:py-12">
         <ResizeImagePage format={format} relatedFormats={relatedFormats} />
       </div>
