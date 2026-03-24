@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { formats } from '@/lib/formats';
 import { pdfTools } from '@/data/pdfTools';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://imageresizer.tool';
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://quicktoolhub.tech';
 
 const imageToolSlugs = ['resize', 'compress', 'convert'];
 const pdfToolRouteSlugs = ['merge', 'split', 'pdf-to-image', 'pdf-to-word'];

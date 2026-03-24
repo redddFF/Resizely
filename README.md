@@ -6,6 +6,8 @@ Resizely is a Next.js App Router platform for image resizing and PDF utilities, 
 
 ### Core product coverage
 
+Last verified: 2026-03-24
+
 - Image resize presets: 150
 - Image category groups: 24
 - PDF tools: 11
