@@ -7,6 +7,8 @@ import { ArrowRight } from 'lucide-react';
 import { formats } from '@/lib/formats';
 import { generateBreadcrumbSchema, renderJSONLD } from '@/lib/structuredData';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://imageresizer.tool';
+
 export const metadata: Metadata = {
   title: 'Social Media Image Sizes & Dimensions Guide 2024',
   description: 'Complete guide to social media image sizes for Instagram, Facebook, TikTok, LinkedIn, YouTube, and more. Get perfect dimensions for every platform.',
@@ -15,6 +17,12 @@ export const metadata: Metadata = {
     title: 'Social Media Image Sizes & Dimensions Guide 2024',
     description: 'Complete guide to social media image sizes for Instagram, Facebook, TikTok, LinkedIn, YouTube, and more.',
     type: 'website',
+    url: `${baseUrl}/social-media-image-sizes`,
+    images: [
+      {
+        url: `${baseUrl}/og-image.png`,
+      },
+    ],
   },
 };
 
@@ -38,7 +46,7 @@ export default function SocialMediaImageSizesPage() {
                 { name: 'Home', url: '/' },
                 { name: 'Social Media Image Sizes' },
               ],
-              process.env.NEXT_PUBLIC_BASE_URL || 'https://resizelab.io'
+              baseUrl
             )
           ),
         }}

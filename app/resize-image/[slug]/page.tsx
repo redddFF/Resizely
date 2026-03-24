@@ -7,6 +7,7 @@ import {
   getAllFormatSlugs,
   getRelatedFormats,
 } from '@/lib/formats';
+import { buildImageFormatMetadata } from '@/lib/toolSeo';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://imageresizer.tool';
 
@@ -26,29 +27,14 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${format.name} Image Resizer | Free Online Tool`;
-  const description = format.description;
-  const url = `${baseUrl}/resize-image/${slug}`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      url,
-      type: 'website',
-      siteName: 'Resizely',
+  return buildImageFormatMetadata(
+    {
+      ...format,
+      width: format.width,
+      height: format.height,
     },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-    },
-    alternates: {
-      canonical: url,
-    },
-  };
+    `/resize-image/${slug}`
+  );
 }
 
 export async function generateStaticParams() {

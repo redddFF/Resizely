@@ -33,6 +33,8 @@ interface ImageToolPageProps {
   };
   toolType: 'resize' | 'compress' | 'convert';
   apiEndpoint: string;
+  currentPath?: string;
+  routeType?: 'image' | 'convert';
 }
 
 interface ProcessingState {
@@ -47,6 +49,8 @@ export default function ImageToolPage({
   tool,
   toolType,
   apiEndpoint,
+  currentPath,
+  routeType = 'image',
 }: ImageToolPageProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [processingState, setProcessingState] = useState<ProcessingState>({
@@ -203,8 +207,10 @@ export default function ImageToolPage({
   return (
     <ToolPageTemplate
       tool={tool}
-      routeType="image"
+      routeType={routeType}
       relatedTools={[]}
+      actionHref={currentPath}
+      actionLabel="Open Converter"
     >
       {/* Tool Configuration Panel */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

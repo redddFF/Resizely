@@ -16,6 +16,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { formats } from '@/lib/formats';
 import ImageToolPage from '@/components/tools/ImageToolPage';
+import { buildConverterMetadata } from '@/lib/toolSeo';
 
 // Map tool slugs to their API endpoints and types
 const toolConfig = {
@@ -59,15 +60,15 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
-    title: `${config.name} | Resizely`,
-    description: `Free online ${config.name.toLowerCase()} tool. ${config.name} your images instantly without losing quality.`,
-    openGraph: {
-      title: config.name,
-      description: `Free online ${config.name.toLowerCase()} tool`,
-      type: 'website',
+  return buildConverterMetadata(
+    {
+      name: config.name,
+      slug,
+      description: `Free online ${config.name.toLowerCase()} tool. ${config.name} your images instantly without losing quality.`,
+      category: config.category,
     },
-  };
+    `/tools/image/${slug}`
+  );
 }
 
 export default async function ImageToolRoute({
@@ -122,6 +123,8 @@ export default async function ImageToolRoute({
       tool={tool}
       toolType={config.toolType}
       apiEndpoint={config.apiEndpoint}
+      currentPath={`/tools/image/${slug}`}
+      routeType="image"
     />
   );
 }

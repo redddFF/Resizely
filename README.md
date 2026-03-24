@@ -1,6 +1,6 @@
-# Resizely
+# QuickToolHub
 
-Resizely is a Next.js App Router platform for image resizing and PDF utilities, with SEO-focused dynamic pages and browser-first processing flows.
+QuickToolHub is a Next.js App Router platform for image resizing, PDF utilities, and converter workflows, with SEO-focused dynamic pages and browser-first processing flows.
 
 ## Platform Specs
 
@@ -102,6 +102,122 @@ Last verified: 2026-03-24
 - JSON-LD structured data
 - Dynamic sitemap and robots handling
 - PWA manifest endpoint via App Router (`/manifest.webmanifest`)
+
+### Brand and domain
+
+- Primary brand: QuickToolHub
+- Primary domain: `https://quicktoolhub.tech`
+- Canonical host strategy: apex domain preferred over `www`
+
+## Tool Platform Coverage
+
+### Dynamic route systems
+
+- `/resize-image/[slug]`: image preset pages (150 static paths)
+- `/resize/[slug]`: SEO/image template route for image presets (150 static paths)
+- `/pdf/[slug]`: PDF dynamic tool pages (11 static paths)
+- `/tools/image/[slug]`: image workflow tools (`resize`, `compress`, `convert`)
+- `/tools/pdf/[slug]`: PDF workflow tools (`merge`, `split`, `pdf-to-image`, `pdf-to-word`)
+- `/convert/[slug]`: converter workflow pages (`resize`, `compress`, `convert`)
+
+### Canonical and alias coverage
+
+- Canonical image page pattern: `/resize-image/<slug>`
+- Canonical PDF page pattern: `/pdf/<slug>`
+- Maintained aliases/redirect paths:
+	- `/pdf/merge` -> merge workflow
+	- `/pdf/split` -> `/pdf/split-pdf`
+	- `/pdf/pdf-to-image` -> `/pdf/pdf-to-jpg`
+	- `/tools/*` and `/convert/*` workflow pages for direct processing UIs
+
+## Internal Linking System Specs
+
+### Site-wide internal linking components
+
+- Related tools block: dynamic 3-5 links per tool page
+- Popular tools block: dynamic top 5 links site-wide
+- Recently used block: dynamic 3-5 links by user session/local visit history
+- Footer top-tools nav: semantic `<footer><nav><ul><li>` dynamic link lists
+
+### Internal linking data layers
+
+- `lib/toolRegistry.ts`: unified tool registry and popularity scoring for image/PDF/workflow tools
+- `lib/toolCatalog.ts`: route-type catalog used by internal-link rendering
+- `lib/toolSessionUsage.ts`: session-based visit and popularity tracking
+- `lib/recentlyUsed.ts`: localStorage recently-used tracking with legacy migration support
+
+### Render integration points
+
+- `components/ToolPageTemplate.tsx`
+- `components/ResizeImagePage.tsx`
+- `components/tools/InternalLinksSections.tsx`
+- `components/PopularToolsSection.tsx`
+- `components/RecentlyUsedSection.tsx`
+- `components/Footer.tsx`
+
+### Tracking and storage behavior
+
+- Session popularity key: `qth:usage-tools` (sessionStorage)
+- Session recent key: `qth:recent-tools` (sessionStorage)
+- Local recent key: `quicktoolhub-recently-used` (localStorage)
+- Legacy migration key: `image-resizer-recently-used` -> migrated to unified local key
+
+### Accessibility and semantic guarantees
+
+- Section headings for all internal-link blocks (`h2`)
+- Labeled navigation landmarks via `aria-label`
+- Link groups rendered in semantic lists (`ul`/`li`)
+- Descriptive anchor text for crawler readability and UX clarity
+
+## API/Processing Platform Specs
+
+### Image conversion endpoints
+
+- `/api/convert-image/resize`
+- `/api/convert-image/compress`
+- `/api/convert-image/convert`
+
+### PDF conversion endpoints
+
+- `/api/convert-pdf/merge`
+- `/api/convert-pdf/split`
+- `/api/convert-pdf/pdf-to-image`
+- `/api/convert-pdf/pdf-to-word`
+
+## SEO and social metadata specs
+
+### Open Graph coverage (important pages)
+
+- Homepage: complete OG tags (`title`, `description`, `type`, `url`, `image`)
+- About, Privacy, Terms: complete OG tags
+- Guide pages: social media sizes, ad sizes, ecommerce sizes, blog sizes with complete OG tags
+- PDF tools hub page: complete OG tags
+
+### Structured metadata strategy
+
+- Sitewide metadata from `app/layout.tsx`
+- Page-level overrides via static `metadata` or `generateMetadata`
+- JSON-LD blocks for webpage/website/item lists and breadcrumbs
+
+## Deployment and edge routing specs
+
+### Vercel redirect rules
+
+- `www.quicktoolhub.tech` -> `https://quicktoolhub.tech` (301)
+- HTTP -> HTTPS redirect for apex host (301)
+- Full path and query preservation for redirects
+
+### Caching headers for image performance
+
+- Implemented in `vercel.json` for: `jpg`, `jpeg`, `png`, `gif`, `svg`
+- Headers:
+	- `Cache-Control: public, max-age=31536000, immutable`
+	- `Expires: Thu, 31 Dec 2037 23:55:55 GMT`
+
+### Server config references
+
+- Apache and NGINX examples: `CACHING_HEADERS_GUIDE.md`
+- CMS plugin recommendations (WordPress): `CACHING_HEADERS_GUIDE.md`
 
 ## Project Structure
 

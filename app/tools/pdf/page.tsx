@@ -4,15 +4,23 @@ import { ArrowRight, FileText, Image as ImageIcon, Scissors, Combine } from 'luc
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://imageresizer.tool';
+
 export const metadata: Metadata = {
-  title: 'PDF Tools Hub | Resizely',
+  title: 'PDF Tools Hub | QuickToolHub',
   description:
     'Use free online PDF tools to merge, split, convert PDF to image, and convert PDF to Word. Fast, secure, and no signup required.',
   openGraph: {
-    title: 'PDF Tools Hub | Resizely',
+    title: 'PDF Tools Hub | QuickToolHub',
     description:
-      'Merge, split, and convert PDF files online with Resizely PDF tools.',
+      'Merge, split, and convert PDF files online with QuickToolHub PDF tools.',
     type: 'website',
+    url: `${baseUrl}/tools/pdf`,
+    images: [
+      {
+        url: `${baseUrl}/og-image.png`,
+      },
+    ],
   },
 };
 

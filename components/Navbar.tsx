@@ -39,9 +39,9 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">R</span>
+              <span className="text-white font-bold text-lg">Q</span>
             </div>
-            <span className="hidden sm:inline font-bold text-lg text-foreground">Resizely</span>
+            <span className="hidden sm:inline font-bold text-lg text-foreground">QuickToolHub</span>
           </Link>
 
           {/* Desktop Navigation */}

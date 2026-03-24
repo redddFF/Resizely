@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { formats } from '@/lib/formats';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://imageresizer.tool';
+
 export const metadata: Metadata = {
   title: 'Ad Image Sizes: Google, Facebook, Instagram & More - Complete Guide',
   description: 'Complete guide to advertising image dimensions. Get the right sizes for Google Display Ads, Facebook ads, Instagram ads, LinkedIn ads, and more.',
@@ -13,6 +15,12 @@ export const metadata: Metadata = {
     title: 'Ad Image Sizes: Google, Facebook, Instagram & More',
     description: 'Complete guide to advertising image dimensions for all major platforms.',
     type: 'website',
+    url: `${baseUrl}/ad-image-sizes`,
+    images: [
+      {
+        url: `${baseUrl}/og-image.png`,
+      },
+    ],
   },
 };
 

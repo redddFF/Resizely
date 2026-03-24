@@ -33,6 +33,7 @@ interface PDFToolPageProps {
   };
   toolType: 'merge' | 'split' | 'pdfToImage' | 'pdfToWord';
   apiEndpoint: string;
+  currentPath?: string;
 }
 
 interface ProcessingState {
@@ -47,6 +48,7 @@ export default function PDFToolPage({
   tool,
   toolType,
   apiEndpoint,
+  currentPath,
 }: PDFToolPageProps) {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [processingState, setProcessingState] = useState<ProcessingState>({
@@ -255,6 +257,8 @@ export default function PDFToolPage({
       tool={tool}
       routeType="pdf"
       relatedTools={[]}
+      actionHref={currentPath}
+      actionLabel="Open Converter"
     >
       {/* Tool Configuration Panel */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

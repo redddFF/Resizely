@@ -10,8 +10,8 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: 'Is Resizely completely free to use?',
-    answer: 'Yes! Resizely is 100% free with no hidden fees, no watermarks, and no sign-up required. You can use all our tools—image resizer, PDF merger, file converters—as much as you want, absolutely free.',
+    question: 'Is QuickToolHub completely free to use?',
+    answer: 'Yes! QuickToolHub is 100% free with no hidden fees, no watermarks, and no sign-up required. You can use all our tools—image resizer, PDF merger, file converters—as much as you want, absolutely free.',
   },
   {
     question: 'Are my files secure? Do you store my images?',
@@ -19,19 +19,19 @@ const faqs: FAQItem[] = [
   },
   {
     question: 'Do I need to create an account or sign up?',
-    answer: 'No! You can start using Resizely immediately without any registration, email verification, or account creation. Just visit the tool and get started right away.',
+    answer: 'No! You can start using QuickToolHub immediately without any registration, email verification, or account creation. Just visit the tool and get started right away.',
   },
   {
     question: 'What image formats do you support?',
     answer: 'We support all major image formats including JPG, PNG, GIF, WebP, BMP, SVG, and TIFF. You can resize images for Instagram, YouTube, LinkedIn, Facebook, Pinterest, TikTok, email, web design, and 150+ other formats.',
   },
   {
-    question: 'Can I use Resizely on my phone or tablet?',
-    answer: 'Yes! Resizely works on all devices—desktop, tablet, and smartphone. Our responsive design automatically adapts to your screen size, so you can resize images online from anywhere, anytime.',
+    question: 'Can I use QuickToolHub on my phone or tablet?',
+    answer: 'Yes! QuickToolHub works on all devices—desktop, tablet, and smartphone. Our responsive design automatically adapts to your screen size, so you can resize images online from anywhere, anytime.',
   },
   {
-    question: 'Why should I use Resizely instead of other tools?',
-    answer: 'Unlike desktop software or cloud services, Resizely runs entirely in your browser with no uploads. It\'s faster, more private, and doesn\'t require installation. We also support 150+ formats, offer batch processing, and provide advanced tools like PDF merging and file conversion—all completely free.',
+    question: 'Why should I use QuickToolHub instead of other tools?',
+    answer: 'Unlike desktop software or cloud services, QuickToolHub runs entirely in your browser with no uploads. It\'s faster, more private, and doesn\'t require installation. We also support 150+ formats, offer batch processing, and provide advanced tools like PDF merging and file conversion—all completely free.',
   },
 ];
 
@@ -47,7 +47,7 @@ export function FAQSection() {
               Frequently Asked Questions
             </h2>
             <p className="text-center text-muted-foreground">
-              Everything you need to know about using Resizely
+              Everything you need to know about using QuickToolHub
             </p>
           </div>
 

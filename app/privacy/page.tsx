@@ -1,9 +1,23 @@
 import type { Metadata } from 'next';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://imageresizer.tool';
+
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Resizely',
+  title: 'Privacy Policy | QuickToolHub',
   description:
-    'Read the Resizely privacy policy to understand what data we collect, how local browser processing works, and your rights over information.',
+    'Read the QuickToolHub privacy policy to understand what data we collect, how local browser processing works, and your rights over information.',
+  openGraph: {
+    title: 'Privacy Policy | QuickToolHub',
+    description:
+      'Read the QuickToolHub privacy policy to understand what data we collect, how local browser processing works, and your rights over information.',
+    type: 'website',
+    url: `${baseUrl}/privacy`,
+    images: [
+      {
+        url: `${baseUrl}/og-image.png`,
+      },
+    ],
+  },
   alternates: {
     canonical: '/privacy',
   },
@@ -21,7 +35,7 @@ export default function PrivacyPage() {
         <section className="space-y-4 text-foreground leading-7">
           <h2 className="text-2xl font-semibold">Overview</h2>
           <p>
-            This Privacy Policy explains how Resizely handles information when you use our website and image resizing tool.
+            This Privacy Policy explains how QuickToolHub handles information when you use our website and image resizing tool.
             We collect only the data needed to operate, secure, and improve the service.
           </p>
         </section>
@@ -29,7 +43,7 @@ export default function PrivacyPage() {
         <section className="mt-8 space-y-4 text-foreground leading-7">
           <h2 className="text-2xl font-semibold">Image Processing and Files</h2>
           <p>
-            Resizely processes uploaded images in your browser using client-side technology. In normal use, files are not
+            QuickToolHub processes uploaded images in your browser using client-side technology. In normal use, files are not
             sent to our servers for resizing. Your selected image, preview, and export actions stay on your device unless
             you independently choose to share or upload the file elsewhere.
           </p>

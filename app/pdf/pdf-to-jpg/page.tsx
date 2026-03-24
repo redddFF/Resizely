@@ -5,6 +5,7 @@ import { pdfToJpgs } from '@/lib/pdf/pdfToJpg';
 import { FileUpload } from '@/components/tools/FileUpload';
 import { ProcessingState } from '@/components/tools/ProcessingState';
 import { ErrorState } from '@/components/tools/ErrorState';
+import { InternalLinksSections } from '@/components/tools/InternalLinksSections';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -407,33 +408,16 @@ export default function PdfToJpgPage() {
         </ul>
       </section>
 
-      {/* Related Tools CTA */}
       <section className="mt-12 pt-8 border-t">
-        <h2 className="text-2xl font-bold mb-6">More PDF Tools</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <a
-            href="/pdf/merge"
-            className="p-6 border rounded-lg hover:border-primary hover:shadow-md transition-all group"
-          >
-            <h3 className="font-semibold group-hover:text-primary transition-colors">
-              Merge PDF
-            </h3>
-            <p className="text-sm text-muted-foreground mt-2">
-              Combine multiple PDF files into one
-            </p>
-          </a>
-          <a
-            href="/pdf/jpg-to-pdf"
-            className="p-6 border rounded-lg hover:border-primary hover:shadow-md transition-all group"
-          >
-            <h3 className="font-semibold group-hover:text-primary transition-colors">
-              JPG to PDF
-            </h3>
-            <p className="text-sm text-muted-foreground mt-2">
-              Convert images to PDF files
-            </p>
-          </a>
-        </div>
+        <InternalLinksSections
+          current={{
+            slug: 'pdf-to-jpg',
+            name: 'PDF to JPG',
+            routeType: 'pdf',
+            category: 'Image Conversion',
+            href: '/pdf/pdf-to-jpg',
+          }}
+        />
       </section>
     </main>
   );

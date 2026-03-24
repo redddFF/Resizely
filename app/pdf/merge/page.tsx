@@ -7,6 +7,7 @@ import { FilePreviewList, FileItem } from '@/components/tools/FilePreviewList';
 import { ProcessingState } from '@/components/tools/ProcessingState';
 import { DownloadResult } from '@/components/tools/DownloadResult';
 import { ErrorState } from '@/components/tools/ErrorState';
+import { InternalLinksSections } from '@/components/tools/InternalLinksSections';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -309,33 +310,16 @@ export default function MergePdfPage() {
         </ul>
       </section>
 
-      {/* Related Tools CTA */}
       <section className="mt-12 pt-8 border-t">
-        <h2 className="text-2xl font-bold mb-6">More PDF Tools</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <a
-            href="/pdf/jpg-to-pdf"
-            className="p-6 border rounded-lg hover:border-primary hover:shadow-md transition-all group"
-          >
-            <h3 className="font-semibold group-hover:text-primary transition-colors">
-              JPG to PDF
-            </h3>
-            <p className="text-sm text-muted-foreground mt-2">
-              Convert images to PDF files
-            </p>
-          </a>
-          <a
-            href="/pdf/pdf-to-jpg"
-            className="p-6 border rounded-lg hover:border-primary hover:shadow-md transition-all group"
-          >
-            <h3 className="font-semibold group-hover:text-primary transition-colors">
-              PDF to JPG
-            </h3>
-            <p className="text-sm text-muted-foreground mt-2">
-              Extract images from PDF files
-            </p>
-          </a>
-        </div>
+        <InternalLinksSections
+          current={{
+            slug: 'merge-pdf',
+            name: 'Merge PDF',
+            routeType: 'pdf',
+            category: 'PDF Utilities',
+            href: '/pdf/merge',
+          }}
+        />
       </section>
     </main>
   );

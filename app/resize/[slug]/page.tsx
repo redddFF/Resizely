@@ -37,7 +37,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import ToolPageTemplate from '@/components/ToolPageTemplate';
 import { formats } from '@/lib/formats';
-import { generateMetadata as generateMetadataUtil } from '@/utils/seo';
+import { buildImageFormatMetadata } from '@/lib/toolSeo';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -91,7 +91,15 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     };
   }
 
-  return generateMetadataUtil(format, 'https://resizelab.io', 'image');
+  return buildImageFormatMetadata(
+    {
+      ...format,
+      width: format.width,
+      height: format.height,
+    },
+    `/resize/${format.slug}`,
+    `/resize-image/${format.slug}`
+  );
 }
 
 /**

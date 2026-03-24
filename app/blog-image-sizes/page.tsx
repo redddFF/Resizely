@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { formats } from '@/lib/formats';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://imageresizer.tool';
+
 export const metadata: Metadata = {
   title: 'Blog & Website Image Sizes: Perfect Dimensions for WordPress & More',
   description: 'Complete guide to blog and website image dimensions. Get perfect sizes for featured images, hero banners, blog thumbnails, and more.',
@@ -13,6 +15,12 @@ export const metadata: Metadata = {
     title: 'Blog & Website Image Sizes Guide',
     description: 'Complete guide to image sizes for blogs, websites, and content publishing platforms.',
     type: 'website',
+    url: `${baseUrl}/blog-image-sizes`,
+    images: [
+      {
+        url: `${baseUrl}/og-image.png`,
+      },
+    ],
   },
 };
 

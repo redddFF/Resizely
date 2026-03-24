@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { UploadBox } from '@/components/image-resizer/UploadBox';
 import { ImagePreview } from '@/components/image-resizer/ImagePreview';
 import { ResizeControls } from '@/components/image-resizer/ResizeControls';
@@ -8,9 +8,8 @@ import { QualitySlider } from '@/components/image-resizer/QualitySlider';
 import { DownloadButton } from '@/components/image-resizer/DownloadButton';
 import { AdPlaceholder } from '@/components/image-resizer/AdPlaceholder';
 import { FAQ } from '@/components/image-resizer/FAQ';
-import { RelatedTools } from '@/components/image-resizer/RelatedTools';
 import { Breadcrumb } from '@/components/image-resizer/Breadcrumb';
-import { RecentlyUsedSection } from '@/components/RecentlyUsedSection';
+import { InternalLinksSections } from '@/components/tools/InternalLinksSections';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Link2, RotateCcw } from 'lucide-react';
@@ -19,7 +18,6 @@ import {
   resizeImageAsync,
   validateImageFile,
 } from '@/lib/imageProcessor';
-import { addToRecentlyUsed } from '@/lib/recentlyUsed';
 import type { ImageFormat } from '@/lib/formats';
 
 interface ResizeImagePageProps {
@@ -40,11 +38,6 @@ export function ResizeImagePage({
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
-
-  // Track recently used format
-  useEffect(() => {
-    addToRecentlyUsed(format.slug);
-  }, [format.slug]);
 
   const handleImageSelect = async (file: File) => {
     setError('');
@@ -253,17 +246,21 @@ export function ResizeImagePage({
       {/* Bottom Ad */}
       <AdPlaceholder position="bottom" />
 
-      {/* Related Tools Section */}
-      {relatedFormats.length > 0 && (
-        <>
-          <Separator />
-          <RelatedTools tools={relatedFormats} />
-        </>
-      )}
-
-      {/* Recently Used Section */}
       <Separator />
-      <RecentlyUsedSection />
+      <InternalLinksSections
+        current={{
+          slug: format.slug,
+          name: format.name,
+          routeType: 'image',
+          category: format.category,
+          href: `/resize-image/${format.slug}`,
+        }}
+        relatedTools={relatedFormats.map((related) => ({
+          name: related.name,
+          slug: related.slug,
+          category: related.category,
+        }))}
+      />
     </div>
   );
 }

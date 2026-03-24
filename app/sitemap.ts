@@ -6,6 +6,7 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://quicktoolhub.tech';
 
 const imageToolSlugs = ['resize', 'compress', 'convert'];
 const pdfToolRouteSlugs = ['merge', 'split', 'pdf-to-image', 'pdf-to-word'];
+const convertToolSlugs = ['resize', 'compress', 'convert'];
 
 function makeEntry(
   path: string,
@@ -54,6 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const converterToolPages: MetadataRoute.Sitemap = [
     ...imageToolSlugs.map((slug) => makeEntry(`/tools/image/${slug}`, now, 'weekly', 0.8)),
     ...pdfToolRouteSlugs.map((slug) => makeEntry(`/tools/pdf/${slug}`, now, 'weekly', 0.8)),
+    ...convertToolSlugs.map((slug) => makeEntry(`/convert/${slug}`, now, 'weekly', 0.82)),
   ];
 
   const entries = [

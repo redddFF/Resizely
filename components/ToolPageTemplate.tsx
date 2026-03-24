@@ -26,6 +26,7 @@ import { ArrowRight, Check, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { InternalLinksSections } from '@/components/tools/InternalLinksSections';
 
 export interface ToolPageTemplateProps {
   // Tool data
@@ -42,7 +43,7 @@ export interface ToolPageTemplateProps {
   };
   
   // Route configuration
-  routeType: 'image' | 'pdf';
+  routeType: 'image' | 'pdf' | 'convert';
 
   // Optional override for primary CTA destination
   actionHref?: string | null;
@@ -73,7 +74,8 @@ export default function ToolPageTemplate({
   children,
   onCTAClick,
 }: ToolPageTemplateProps) {
-  const route = routeType === 'image' ? '/resize' : '/pdf';
+  const route = routeType === 'image' ? '/resize-image' : routeType === 'pdf' ? '/pdf' : '/convert';
+  const routeLabel = routeType === 'image' ? 'Image Tools' : routeType === 'pdf' ? 'PDF Tools' : 'Converter Tools';
   const toolUrl = actionHref ?? `${route}/${tool.slug}`;
   const ctaLabel = actionLabel ?? 'Open Tool';
   const isActionable = Boolean(toolUrl);
@@ -97,7 +99,7 @@ export default function ToolPageTemplate({
             </Link>
             <span>/</span>
             <Link href={route} className="hover:text-slate-900">
-              {routeType === 'image' ? 'Image Tools' : 'PDF Tools'}
+              {routeLabel}
             </Link>
             {tool.category && (
               <>
@@ -269,46 +271,20 @@ export default function ToolPageTemplate({
         </section>
       )}
 
-      {/* Related Tools Section */}
-      {relatedTools.length > 0 && (
-        <section className="py-12 border-b border-slate-200 bg-slate-50">
-          <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-slate-900 mb-2">Related Tools</h2>
-              <p className="text-lg text-slate-600">
-                Check out other helpful tools in this category
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {relatedTools.map((relatedTool) => (
-                <Link
-                  key={relatedTool.slug}
-                  href={`${route}/${relatedTool.slug}`}
-                  className="group"
-                >
-                  <Card className="h-full hover:shadow-lg transition-shadow">
-                    <CardHeader>
-                      <CardTitle className="text-lg group-hover:text-blue-600 transition-colors">
-                        {relatedTool.name}
-                      </CardTitle>
-                      {relatedTool.category && (
-                        <CardDescription>{relatedTool.category}</CardDescription>
-                      )}
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex items-center text-blue-600 group-hover:gap-2 transition-all gap-0">
-                        <span>Explore</span>
-                        <ArrowRight className="h-4 w-4" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <section className="py-12 border-b border-slate-200 bg-slate-50">
+        <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <InternalLinksSections
+            current={{
+              slug: tool.slug,
+              name: tool.name,
+              routeType,
+              category: tool.category,
+              href: toolUrl,
+            }}
+            relatedTools={relatedTools}
+          />
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-12 bg-gradient-to-r from-blue-600 to-blue-700">

@@ -11,7 +11,7 @@ export function SEOContentBlock() {
             
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p>
-                Resizely is your comprehensive online toolkit for image resizing, PDF management, and file conversion. Whether you need to resize images for social media, merge PDF documents, or convert files between formats, our free online tools make it simple and fast—all directly in your browser with no uploads required.
+                QuickToolHub is your comprehensive online toolkit for image resizing, PDF management, and file conversion. Whether you need to resize images for social media, merge PDF documents, or convert files between formats, our free online tools make it simple and fast—all directly in your browser with no uploads required.
               </p>
 
               <div>

@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { formats } from '@/lib/formats';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://imageresizer.tool';
+
 export const metadata: Metadata = {
   title: 'E-commerce Product Image Sizes: Shopify, Amazon, Etsy & More',
   description: 'Complete guide to e-commerce product image dimensions for Shopify, Amazon, Etsy, eBay, WooCommerce. Optimize product photos for maximum conversions.',
@@ -13,6 +15,12 @@ export const metadata: Metadata = {
     title: 'E-commerce Product Image Sizes Guide',
     description: 'Get the right dimensions for product images on every major e-commerce platform.',
     type: 'website',
+    url: `${baseUrl}/ecommerce-image-sizes`,
+    images: [
+      {
+        url: `${baseUrl}/og-image.png`,
+      },
+    ],
   },
 };
 

@@ -102,7 +102,7 @@ const homepageStructuredData = {
       '@type': 'WebSite',
       '@id': `${baseUrl}/#website`,
       url: `${baseUrl}/`,
-      name: 'Resizely',
+      name: 'QuickToolHub',
       description:
         'Free browser-based image resizer, PDF tools, and file converter for creators, marketers, and businesses.',
       potentialAction: {
@@ -127,7 +127,7 @@ const homepageStructuredData = {
 };
 
 export const metadata: Metadata = {
-  title: 'Free Online Image Resizer, PDF Tools and File Converter | Resizely',
+  title: 'Free Online Image Resizer, PDF Tools and File Converter | QuickToolHub',
   description:
     'Resize images online for Instagram, YouTube, LinkedIn, eCommerce, and ads. Merge PDFs, convert files, and compress assets fast with private browser-based processing.',
   keywords: [
@@ -145,25 +145,26 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Free Online Image Resizer, PDF Tools and File Converter | Resizely',
+    title: 'Free Online Image Resizer, PDF Tools and File Converter | QuickToolHub',
     description:
       'Resize images for 150+ formats, merge PDFs, and convert files online in seconds. Free, private, and no sign-up required.',
-    url: '/',
+    type: 'website',
+    url: `${baseUrl}/`,
     images: [
       {
-        url: '/og-image.png',
+        url: `${baseUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'Resizely image resizer and PDF tools',
+        alt: 'QuickToolHub image resizer and PDF tools',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Online Image Resizer, PDF Tools and File Converter | Resizely',
+    title: 'Free Online Image Resizer, PDF Tools and File Converter | QuickToolHub',
     description:
       'One toolkit for image resizing, PDF merge, and file conversion. Fast browser processing with full privacy.',
-    images: ['/og-image.png'],
+    images: [`${baseUrl}/og-image.png`],
   },
 };
 
@@ -271,7 +272,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-              Why Choose Resizely?
+              Why Choose QuickToolHub?
             </h2>
             <p className="text-lg text-muted-foreground">
               Fast, private, and powerfully simple tools for image resizing and file conversion.
@@ -344,7 +345,7 @@ export default function HomePage() {
           },
           {
             title: '🔄 File Converters',
-            description: `Convert between image and document formats with advanced quality controls. Browse ${converterToolsCategory.length} converter tools already available on Resizely.`,
+            description: `Convert between image and document formats with advanced quality controls. Browse ${converterToolsCategory.length} converter tools already available on QuickToolHub.`,
             bgColor: 'bg-green/5',
             tools: converterToolsCategory,
           },

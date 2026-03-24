@@ -32,7 +32,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import ToolPageTemplate from '@/components/ToolPageTemplate';
 import { pdfTools } from '@/data/pdfTools';
-import { generateMetadata as generateMetadataUtil } from '@/utils/seo';
+import { buildPdfToolMetadata } from '@/lib/toolSeo';
 
 function getPdfActionHref(slug: string): string | null {
   const exactMatches: Record<string, string> = {
@@ -129,7 +129,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     };
   }
 
-  return generateMetadataUtil(tool, 'https://resizelab.io', 'pdf');
+  return buildPdfToolMetadata(tool, `/pdf/${tool.slug}`);
 }
 
 /**

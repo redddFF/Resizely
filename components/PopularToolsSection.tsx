@@ -1,124 +1,61 @@
+'use client';
+
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-import { ArrowRight, Image, FileText, Zap } from 'lucide-react';
-import { formats, type ImageFormat } from '@/lib/formats';
+import { getPopularTools } from '@/lib/toolRegistry';
 
-interface PopularTool {
-  title: string;
-  description: string;
-  slug: string;
-  icon: React.ComponentType<{ className: string }>;
+interface PopularToolsSectionProps {
+  limit?: number;
 }
 
-const popularTools: PopularTool[] = [
-  {
-    title: 'Instagram Post Resizer',
-    description: 'Resize images to 1:1 square format (1080×1080px) for Instagram feed posts',
-    slug: 'instagram-post',
-    icon: Image,
-  },
-  {
-    title: 'YouTube Thumbnail Resizer',
-    description: 'Create perfect 16:9 thumbnails (1280×720px) for maximum video visibility',
-    slug: 'youtube-thumbnail',
-    icon: Image,
-  },
-  {
-    title: 'Merge PDF',
-    description: 'Combine multiple PDF files into one document instantly',
-    slug: 'merge-pdf',
-    icon: FileText,
-  },
-  {
-    title: 'JPG to PDF',
-    description: 'Convert JPG, PNG, and other images to PDF format online',
-    slug: 'jpg-to-pdf',
-    icon: FileText,
-  },
-  {
-    title: 'PDF to JPG',
-    description: 'Extract PDF pages as high-quality JPG images instantly',
-    slug: 'pdf-to-jpg',
-    icon: FileText,
-  },
-  {
-    title: 'PNG to JPG',
-    description: 'Convert PNG images to JPG format with quality optimization',
-    slug: 'png-to-jpg',
-    icon: Image,
-  },
-  {
-    title: 'Compress PDF',
-    description: 'Reduce PDF file size while maintaining quality',
-    slug: 'compress-pdf',
-    icon: Zap,
-  },
-  {
-    title: 'LinkedIn Post Resizer',
-    description: 'Resize to LinkedIn optimal size (1200×627px) for professional posts',
-    slug: 'linkedin-post',
-    icon: Image,
-  },
-];
+export function PopularToolsSection({ limit = 5 }: PopularToolsSectionProps) {
+  const popularTools = getPopularTools(limit);
 
-function getSlugForRoute(toolSlug: string): string {
-  const pdfTools = ['merge-pdf', 'jpg-to-pdf', 'pdf-to-jpg', 'compress-pdf'];
-  if (pdfTools.includes(toolSlug)) {
-    const pdfRoute = toolSlug.replace('-pdf', '').replace('compress', 'compress-pdf');
-    return pdfRoute;
+  if (popularTools.length === 0) {
+    return null;
   }
-  return toolSlug;
-}
 
-export function PopularToolsSection() {
   return (
-    <section className="py-16 md:py-24 border-b border-border bg-gradient-to-br from-background to-muted/30">
+    <section className="py-16 md:py-24 border-b border-border bg-gradient-to-br from-background to-muted/30" aria-labelledby="popular-tools-heading">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+          <h2 id="popular-tools-heading" className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
             Popular Tools
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Get started instantly with our most popular image resizers and PDF tools. All powered by your browser with zero uploads required.
+            Browse the most-used tools across QuickToolHub, with direct links to each workflow.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {popularTools.map((tool) => {
-            const Icon = tool.icon;
-            let href = `/resize-image/${tool.slug}`;
-            
-            if (tool.slug === 'merge-pdf') href = '/pdf/merge';
-            else if (tool.slug === 'jpg-to-pdf') href = '/pdf/jpg-to-pdf';
-            else if (tool.slug === 'pdf-to-jpg') href = '/pdf/pdf-to-jpg';
-            else if (tool.slug === 'compress-pdf') href = '/pdf/compress-pdf';
-            else if (tool.slug === 'png-to-jpg') href = '/resize-image/png-to-jpg';
-
-            return (
-              <Link key={tool.slug} href={href} className="group">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4" aria-label="Top tools">
+          {popularTools.map((tool) => (
+            <li key={tool.id}>
+              <Link href={tool.href} className="group block" aria-label={`Open ${tool.name}`}>
                 <Card className="p-5 h-full hover:shadow-lg hover:border-primary/50 hover:bg-primary/5 transition-all cursor-pointer">
                   <div className="space-y-3">
-                    <div className="flex items-start justify-between">
-                      <Icon className="w-6 h-6 text-primary flex-shrink-0" />
-                    </div>
-                    <div>
+                    <div className="flex items-start gap-2">
+                      <span aria-hidden="true" className="text-base">
+                        {tool.icon || 'TOOL'}
+                      </span>
                       <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                        {tool.title}
+                        {tool.name}
                       </h3>
-                      <p className="text-xs text-muted-foreground mt-2 line-clamp-2">
-                        {tool.description}
-                      </p>
                     </div>
-                    <div className="flex items-center gap-2 text-primary text-sm font-medium pt-2">
-                      Get Started
+                    <p className="text-xs text-muted-foreground line-clamp-1">{tool.category}</p>
+                    <p className="text-sm text-muted-foreground">
+                      Try the {tool.name} online tool
+                    </p>
+                    <div className="flex items-center gap-2 text-primary text-sm font-medium pt-1">
+                      Open tool
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
                 </Card>
               </Link>
-            );
-          })}
-        </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

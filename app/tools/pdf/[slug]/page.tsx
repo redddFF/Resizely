@@ -15,6 +15,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { pdfTools } from '@/data/pdfTools';
 import PDFToolPage from '@/components/tools/PDFToolPage';
+import { buildPdfToolMetadata } from '@/lib/toolSeo';
 
 // Map tool slugs to their API endpoints and types
 const toolConfig = {
@@ -65,15 +66,15 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
-    title: `${config.name} | Resizely`,
-    description: `Free online ${config.name.toLowerCase()} tool. ${config.name} your PDF files instantly.`,
-    openGraph: {
-      title: config.name,
-      description: `Free online ${config.name.toLowerCase()} tool`,
-      type: 'website',
+  return buildPdfToolMetadata(
+    {
+      name: config.name,
+      slug,
+      description: `Free online ${config.name.toLowerCase()} tool. ${config.name} your PDF files instantly.`,
+      category: config.category,
     },
-  };
+    `/tools/pdf/${slug}`
+  );
 }
 
 export default async function PDFToolRoute({
@@ -129,6 +130,7 @@ export default async function PDFToolRoute({
       tool={tool}
       toolType={config.toolType}
       apiEndpoint={config.apiEndpoint}
+      currentPath={`/tools/pdf/${slug}`}
     />
   );
 }
