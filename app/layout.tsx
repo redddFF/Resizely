@@ -13,17 +13,49 @@ const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono'
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://imageresizer.tool'
 
 export const metadata: Metadata = {
-  title: 'Free Image Resizer | Resize Images for Any Format',
-  description: 'Resize images for Instagram, YouTube, LinkedIn, and 50+ other formats. Free, fast, and easy-to-use online image resizer with no watermark.',
+  title: 'Free Online Image Resizer, PDF Tools & File Converter - Resizely',
+  description: 'Free online image resizer, PDF tools, and file converter for social media, ads, eCommerce, and web. Merge PDF, convert JPG to PDF, and resize assets with private browser-based processing.',
+  keywords: 'image resizer online, resize image for social media, pdf merger, pdf converter, jpg to pdf, pdf to jpg, google ads image sizes, ecommerce image resizer, free file converter, browser based image tools',
   metadataBase: new URL(baseUrl),
   applicationName: 'Resizely',
-  generator: 'Resizely',
+  creator: 'Resizely',
+  publisher: 'Resizely',
+  formatDetection: {
+    telephone: false,
+  },
   openGraph: {
-    title: 'Free Image Resizer | Resize for Any Format',
-    description: 'Resize images for Instagram, YouTube, LinkedIn, and 50+ formats instantly.',
+    title: 'Free Online Image Resizer & PDF Tools - Resizely',
+    description: 'Resize images for 150+ formats, merge PDFs, and convert files online. Fast, private, and free with no sign-up required.',
     url: baseUrl,
-    type: 'website',
     siteName: 'Resizely',
+    locale: 'en_US',
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Resizely - Free Image Resizer & PDF Tools',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Online Image Resizer & PDF Tools - Resizely',
+    description: 'Image resizing for 150+ formats, PDF tools, and converters in one place. Free, private, and fast.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   icons: {
     icon: [
@@ -42,6 +74,7 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
+  manifest: '/manifest.webmanifest',
 }
 
 export default function RootLayout({
